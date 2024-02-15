@@ -1,0 +1,129 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Framework_Hub.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:Framework_Hub.Views"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="375"
+        x:Class="Framework_Hub.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Framework Hub"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        SystemDecorations="BorderOnly"
+        WindowStartupLocation="CenterScreen"
+        Background="#fff"
+        Foreground="Black">
+  
+  <DockPanel>
+    <Border DockPanel.Dock="Top" Height="38" Background="#fff">
+      <DockPanel>
+        <Image Source="/Assets/Framework-Computer.png" Height="18" Margin="12,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Image>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+          <Button Height="38" Width="52" Foreground="Black">
+            <TextBlock Text="&#xe921;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe Fluent Icons" FontSize="12" Margin="0,4,0,0"></TextBlock>
+            <Button.Styles>
+              <Style Selector="Button:pointerover /template/ ContentPresenter">
+                <Setter Property="BorderBrush" Value="#f2f2f2"/>
+                <Setter Property="Background" Value="#f2f2f2"/>
+                <Setter Property="Foreground" Value="Black"/>
+              </Style>
+              <Style Selector="Button">
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+              </Style>
+            </Button.Styles>
+          </Button>
+          <Button Height="38" Width="52" Foreground="Black">
+            <TextBlock Text="&#xe922;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe Fluent Icons" FontSize="12" Margin="0,2,0,0"></TextBlock>
+            <Button.Styles>
+              <Style Selector="Button:pointerover /template/ ContentPresenter">
+                <Setter Property="BorderBrush" Value="#f2f2f2"/>
+                <Setter Property="Background" Value="#f2f2f2"/>
+                <Setter Property="Foreground" Value="Black"/>
+              </Style>
+              <Style Selector="Button">
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+              </Style>
+            </Button.Styles>
+          </Button>
+          <Button Height="38" Width="52" Foreground="Black">
+            <TextBlock Text="&#xe8bb;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe Fluent Icons" FontSize="12" Margin="0,2,0,0"></TextBlock>
+            <Button.Styles>
+              <Style Selector="Button:pointerover /template/ ContentPresenter">
+                <Setter Property="BorderBrush" Value="DarkRed"/>
+                <Setter Property="Background" Value="DarkRed"/>
+                <Setter Property="Foreground" Value="White"/>
+              </Style>
+              <Style Selector="Button">
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+              </Style>
+            </Button.Styles>            
+          </Button>
+        </StackPanel>
+      </DockPanel>
+    </Border>
+    <Border DockPanel.Dock="Left" Width="68" Background="#fff">
+      <ListBox Name="lbSide" Background="Transparent" Padding="0" Margin="0,-4,0,0" HorizontalAlignment="Center">
+
+        <ListBox.Styles>
+          <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="ContentTemplate">
+              <DataTemplate>
+                <Border Background="#f2f2f2" CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
+                  <DockPanel Width="59" Height="56" Margin="{Binding Margin}" LastChildFill="True">
+                    <Border DockPanel.Dock="Left" BorderBrush="#F77245" VerticalAlignment="Center" Height="28" BorderThickness="1.5" CornerRadius="1" Width="2" ZIndex="0"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2,0">
+                      <TextBlock FontSize="25" Foreground="#F77245" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="{Binding Icon}" Margin="0,4,0,0"/>
+                      <TextBlock FontSize="12" Foreground="#F77245" HorizontalAlignment="Center" Text="{Binding Sub}" Margin="0,4,0,0"/>
+                    </StackPanel>
+                  </DockPanel>
+                </Border>
+              </DataTemplate>
+            </Setter>
+          </Style>
+          <Style Selector="ListBoxItem:pointerover  /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="ContentTemplate">
+              <DataTemplate>
+                <Border Background="#f2f2f2" CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
+                  <DockPanel Width="59" Height="56" Margin="{Binding Margin}" LastChildFill="True">
+                    <Border DockPanel.Dock="Left" BorderBrush="#F77245" VerticalAlignment="Center" Height="28" BorderThickness="1.5" CornerRadius="1" Width="2" ZIndex="0"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2,0">
+                      <TextBlock FontSize="25" Foreground="#F77245" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="{Binding Icon}" Margin="0,4,0,0"/>
+                      <TextBlock FontSize="12" Foreground="#F77245" HorizontalAlignment="Center" Text="{Binding Sub}" Margin="0,4,0,0"/>
+                    </StackPanel>
+                  </DockPanel>
+                </Border>
+              </DataTemplate>
+            </Setter>
+          </Style>
+          <Style Selector="ListBoxItem">
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="Width" Value="59"/>
+            <Setter Property="Margin" Value="0.5,4,0,0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+          </Style>
+        </ListBox.Styles>
+
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <DockPanel Width="59" Height="56" Margin="{Binding Margin}" LastChildFill="True">
+              <Border DockPanel.Dock="Left" BorderBrush="Transparent" VerticalAlignment="Center" Height="28" BorderThickness="1.5" CornerRadius="1" Width="2" ZIndex="0"/>
+              <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2,0">
+                <TextBlock Foreground="Black" FontSize="25" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="{Binding Icon}" Margin="0,4,0,0"/>
+                <TextBlock Foreground="Black" FontSize="12" HorizontalAlignment="Center" Text="{Binding Sub}" Margin="0,4,0,0"/>
+              </StackPanel>
+            </DockPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Border>
+    <views:MainView BorderBrush="#DDDDDD" BorderThickness="1.2" CornerRadius="4,0,0,0"/>
+  </DockPanel>
+</Window>
