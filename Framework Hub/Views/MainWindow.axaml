@@ -124,6 +124,6 @@
         </ListBox.ItemTemplate>
       </ListBox>
     </Border>
-    <views:MainView BorderBrush="#DDDDDD" BorderThickness="1.2" CornerRadius="4,0,0,0"/>
+    <ContentControl Name="contentArea" BorderBrush="#DDDDDD" Background="#f2f2f2" BorderThickness="1.2" CornerRadius="4,0,0,0"/>
   </DockPanel>
 </Window>
