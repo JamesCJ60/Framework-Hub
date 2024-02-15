@@ -17,11 +17,11 @@
         Foreground="Black">
   
   <DockPanel>
-    <Border DockPanel.Dock="Top" Height="38" Background="#fff">
+    <Border DockPanel.Dock="Top" Height="38" Background="#fff" PointerMoved="InputElement_OnPointerMoved" PointerPressed="InputElement_OnPointerPressed" PointerReleased="InputElement_OnPointerReleased">
       <DockPanel>
         <Image Source="/Assets/Framework-Computer.png" Height="18" Margin="12,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"></Image>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-          <Button Height="38" Width="52" Foreground="Black">
+          <Button Height="38" Width="52" Foreground="Black" Name="btnMini" Click="btnMini_OnClick">
             <TextBlock Text="&#xe921;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe Fluent Icons" FontSize="12" Margin="0,4,0,0"></TextBlock>
             <Button.Styles>
               <Style Selector="Button:pointerover /template/ ContentPresenter">
@@ -35,7 +35,7 @@
               </Style>
             </Button.Styles>
           </Button>
-          <Button Height="38" Width="52" Foreground="Black">
+          <Button Height="38" Width="52" Foreground="Black" Name="btnMax" Click="btnMax_OnClick">
             <TextBlock Text="&#xe922;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe Fluent Icons" FontSize="12" Margin="0,2,0,0"></TextBlock>
             <Button.Styles>
               <Style Selector="Button:pointerover /template/ ContentPresenter">
@@ -49,7 +49,7 @@
               </Style>
             </Button.Styles>
           </Button>
-          <Button Height="38" Width="52" Foreground="Black">
+          <Button Height="38" Width="52" Foreground="Black" Name="btnClose" Click="btnClose_OnClick">
             <TextBlock Text="&#xe8bb;" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe Fluent Icons" FontSize="12" Margin="0,2,0,0"></TextBlock>
             <Button.Styles>
               <Style Selector="Button:pointerover /template/ ContentPresenter">
@@ -76,8 +76,8 @@
               <DataTemplate>
                 <Border Background="#f2f2f2" CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
                   <DockPanel Width="59" Height="56" Margin="{Binding Margin}" LastChildFill="True">
-                    <Border DockPanel.Dock="Left" BorderBrush="#F77245" VerticalAlignment="Center" Height="28" BorderThickness="1.5" CornerRadius="1" Width="2" ZIndex="0"/>
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2,0">
+                    <Border DockPanel.Dock="Left" BorderBrush="#F77245" VerticalAlignment="Center" Height="20" BorderThickness="3" CornerRadius="4" Width="3.3" ZIndex="0"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2.5,0">
                       <TextBlock FontSize="25" Foreground="#F77245" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="{Binding Icon}" Margin="0,4,0,0"/>
                       <TextBlock FontSize="12" Foreground="#F77245" HorizontalAlignment="Center" Text="{Binding Sub}" Margin="0,4,0,0"/>
                     </StackPanel>
@@ -92,8 +92,8 @@
               <DataTemplate>
                 <Border Background="#f2f2f2" CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
                   <DockPanel Width="59" Height="56" Margin="{Binding Margin}" LastChildFill="True">
-                    <Border DockPanel.Dock="Left" BorderBrush="#F77245" VerticalAlignment="Center" Height="28" BorderThickness="1.5" CornerRadius="1" Width="2" ZIndex="0"/>
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2,0">
+                    <Border DockPanel.Dock="Left" BorderBrush="#F77245" VerticalAlignment="Center" Height="20" BorderThickness="3" CornerRadius="4" Width="3.3" ZIndex="0"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2.5,0">
                       <TextBlock FontSize="25" Foreground="#F77245" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="{Binding Icon}" Margin="0,4,0,0"/>
                       <TextBlock FontSize="12" Foreground="#F77245" HorizontalAlignment="Center" Text="{Binding Sub}" Margin="0,4,0,0"/>
                     </StackPanel>
@@ -114,8 +114,8 @@
         <ListBox.ItemTemplate>
           <DataTemplate>
             <DockPanel Width="59" Height="56" Margin="{Binding Margin}" LastChildFill="True">
-              <Border DockPanel.Dock="Left" BorderBrush="Transparent" VerticalAlignment="Center" Height="28" BorderThickness="1.5" CornerRadius="1" Width="2" ZIndex="0"/>
-              <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2,0">
+              <Border DockPanel.Dock="Left" BorderBrush="Transparent" VerticalAlignment="Center" Height="20" BorderThickness="3" CornerRadius="4" Width="3.3" ZIndex="0"/>
+              <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2.5,0">
                 <TextBlock Foreground="Black" FontSize="25" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="{Binding Icon}" Margin="0,4,0,0"/>
                 <TextBlock Foreground="Black" FontSize="12" HorizontalAlignment="Center" Text="{Binding Sub}" Margin="0,4,0,0"/>
               </StackPanel>
