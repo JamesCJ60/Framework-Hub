@@ -17,7 +17,7 @@
   </Design.DataContext>
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="1.4*"/>
+      <ColumnDefinition Width="1.35*"/>
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
     <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="0,12,0,12">
@@ -81,7 +81,7 @@
         <TextBlock FontSize="12" Margin="10,4,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Ryzen™ 7 7840U w/ Radeon 780M Graphics</TextBlock>
         <TextBlock FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Radeon 780M</TextBlock>
         <TextBlock FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- 32GB DDR5 5600MT/s</TextBlock>
-        <ListBox Name="lbPresets" Background="Transparent" Padding="0" Margin="0,12,0,12" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+        <ListBox Name="lbPresets" Background="Transparent" Padding="0" Margin="-2,12,0,12" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
           <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
               <StackPanel Orientation="Horizontal"/>
@@ -143,7 +143,7 @@
             </DataTemplate>
           </ListBox.ItemTemplate>
         </ListBox>
-        <Image Source="\Assets\framework-laptop-13.png" HorizontalAlignment="Center" Margin="60,9,60,0"></Image>
+        <Image Source="\Assets\framework-laptop-13.png" HorizontalAlignment="Center" Margin="45,9,45,0"></Image>
         
       </DockPanel>
     </Border>
