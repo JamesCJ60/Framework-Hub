@@ -8,6 +8,8 @@ using System.Runtime.InteropServices;
 using System;
 using System.Security.Principal;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Framework_Hub.Scripts.Misc;
 
 namespace Framework_Hub;
 
@@ -22,7 +24,6 @@ public partial class App : Application
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-
             if (IsAdmin() == false) RestartAsAdmin();
             else SetUpGUI();
         }
@@ -37,7 +38,7 @@ public partial class App : Application
         }
     }
 
-    void SetUpGUI()
+    async void SetUpGUI()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
@@ -55,6 +56,8 @@ public partial class App : Application
         }
 
         base.OnFrameworkInitializationCompleted();
+
+        await Task.Run(() => Garbage.Garbage_Collect());
     }
 
     static bool IsAdmin()

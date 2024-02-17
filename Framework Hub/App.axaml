@@ -1,10 +1,15 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Framework_Hub.App"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Light">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
-        <FluentTheme />
+        <FluentTheme>
+          <FluentTheme.Palettes>
+            <!-- Palette for Light theme variant -->
+            <ColorPaletteResources x:Key="Light" Accent="#F77245" RegionColor="White" ErrorText="Red" />
+          </FluentTheme.Palettes>
+        </FluentTheme>
     </Application.Styles>
 </Application>

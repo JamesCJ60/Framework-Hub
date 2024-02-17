@@ -26,8 +26,8 @@ public partial class MainWindow : Window
         lbSide.Items.Add(new SideMenu { Icon = "\ue8ab", Sub = "Auto", Margin = new Thickness(0,-8,0,-8) });
         lbSide.SelectedIndex = 0;
 
-        this.Width = 900;
-        this.Height = 500;
+        this.Width = 950;
+        this.Height = 525;
 
         currentPage = new MainView();
         contentArea.Content = currentPage;
