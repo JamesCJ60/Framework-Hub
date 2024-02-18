@@ -10,6 +10,8 @@ public class MainViewModel : ViewModelBase
     private int _pl1;
     private int _pl2;
     private int _temp;
+    private int _allCO;
+    private int _gfxCO;
 
     public int Temp
     {
@@ -50,6 +52,32 @@ public class MainViewModel : ViewModelBase
         }
     }
 
+    public int AllCO
+    {
+        get { return _allCO; }
+        set
+        {
+            if (_allCO != value)
+            {
+                _allCO = value;
+                OnPropertyChanged(nameof(AllCO));
+            }
+        }
+    }
+
+    public int GfxCO
+    {
+        get { return _gfxCO; }
+        set
+        {
+            if (_gfxCO != value)
+            {
+                _gfxCO = value;
+                OnPropertyChanged(nameof(GfxCO));
+            }
+        }
+    }
+
     public event PropertyChangedEventHandler PropertyChanged;
 
     protected virtual void OnPropertyChanged(string propertyName)
@@ -63,5 +91,7 @@ public class MainViewModel : ViewModelBase
         PL1 = 35;
         PL2 = 55;
         Temp = 95;
+        AllCO = 0;
+        GfxCO = 0;
     }
 }

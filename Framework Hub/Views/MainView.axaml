@@ -2,19 +2,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             
              xmlns:vm="clr-namespace:Framework_Hub.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Framework_Hub.Views.MainView"
              Background="#f2f2f2"
-             xmlns:sty="using:FluentAvalonia.Styling"
+             
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives">
+
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="1.38*"/>
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
     <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="0,12,0,12">
+      <ScrollViewer.Styles>
+
+      </ScrollViewer.Styles>
       <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"/>
@@ -37,7 +42,7 @@
               <TextBlock FontSize="15" Margin="0,0,0,8">Temperature Limit (°C)</TextBlock>
               <Grid>
                 <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="0.2*"/>
+                  <ColumnDefinition Width="50"/>
                   <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdTemp, Mode=OneWay, Path=Value, StringFormat={}{0}°C}}}"/>
@@ -64,7 +69,7 @@
               <TextBlock FontSize="15" Margin="0,0,0,8">Slow Boost Power Limit (W)</TextBlock>
               <Grid>
                 <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="0.2*"/>
+                  <ColumnDefinition Width="50"/>
                   <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPL1, Mode=OneWay, Path=Value, StringFormat={}{0}W}}}"/>
@@ -79,11 +84,54 @@
               <TextBlock FontSize="15" Margin="0,0,0,8">Fast Boost Power Limit (W)</TextBlock>
               <Grid>
                 <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="0.2*"/>
+                  <ColumnDefinition Width="50"/>
                   <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPL2, Mode=OneWay, Path=Value, StringFormat={}{0}W}}}"/>
                 <Slider Name="sdPL2" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL2, Mode=TwoWay}" Maximum="60" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
+                  <Slider.Resources>
+                    <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
+                    <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
+                  </Slider.Resources>
+                </Slider>
+              </Grid>
+            </StackPanel>
+          </Expander>
+
+          <Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
+            <Expander.Header>
+              <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe945;"/>
+                <StackPanel Margin="12,0,0,0">
+                  <TextBlock FontSize="14" FontWeight="Medium">Curve Optimiser Controls</TextBlock>
+                  <TextBlock FontSize="12" Foreground="Gray">Customise preset voltage offsets</TextBlock>
+                </StackPanel>
+              </StackPanel>
+            </Expander.Header>
+            <StackPanel Margin="0,0,0,-12">
+              <TextBlock FontSize="15" Margin="0,0,0,8">All Core Offset</TextBlock>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="50"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdAllCO, Mode=OneWay, Path=Value}"/>
+                <Slider Name="sdAllCO" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding AllCO, Mode=TwoWay}" Maximum="0" Minimum="-64" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
+                  <Slider.Resources>
+                    <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
+                    <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
+                  </Slider.Resources>
+                </Slider>
+              </Grid>
+
+              <TextBlock FontSize="15" Margin="0,0,0,8">iGPU Offset</TextBlock>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="50"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdGfxCO, Mode=OneWay, Path=Value}"/>
+                <Slider Name="sdGfxCO" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding GfxCO, Mode=TwoWay}" Maximum="0" Minimum="-64" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
                   <Slider.Resources>
                     <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
                     <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -164,7 +212,7 @@
           </ListBox.ItemTemplate>
         </ListBox>
         <Image Source="\Assets\framework-laptop-13.png" HorizontalAlignment="Center" Margin="45,9,45,0"></Image>
-        
+
       </DockPanel>
     </Border>
   </Grid>

@@ -33,5 +33,6 @@
     <Folder Include="Scripts\Linux\EC Control\" />
     <Folder Include="Scripts\Linux\Intel\" />
     <Folder Include="Scripts\Windows\Intel\" />
+    <Folder Include="Styles\" />
   </ItemGroup>
 </Project>
