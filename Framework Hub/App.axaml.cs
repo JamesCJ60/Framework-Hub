@@ -25,10 +25,15 @@ public partial class App : Application
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             if (IsAdmin() == false) RestartAsAdmin();
-            else SetUpGUI();
+            else
+            {
+                WindowsCpuInfo.GetValues();
+                SetUpGUI();
+            }
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
+            LinuxCpuInfo.GetValues();
             SetUpGUI();
         }
         else
@@ -38,7 +43,7 @@ public partial class App : Application
         }
     }
 
-    async void SetUpGUI()
+    void SetUpGUI()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
@@ -56,8 +61,6 @@ public partial class App : Application
         }
 
         base.OnFrameworkInitializationCompleted();
-
-        await Task.Run(() => Garbage.Garbage_Collect());
     }
 
     static bool IsAdmin()

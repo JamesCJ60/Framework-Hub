@@ -5,19 +5,13 @@
              xmlns:vm="clr-namespace:Framework_Hub.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Framework_Hub.Views.MainView"
-             x:DataType="vm:MainViewModel"
              Background="#f2f2f2"
              xmlns:sty="using:FluentAvalonia.Styling"
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives">
-  <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
-  </Design.DataContext>
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="1.35*"/>
+      <ColumnDefinition Width="1.38*"/>
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
     <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="0,12,0,12">
@@ -32,6 +26,33 @@
           <Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,0,12,0">
             <Expander.Header>
               <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xecad;"/>
+                <StackPanel Margin="12,0,0,0">
+                  <TextBlock FontSize="14" FontWeight="Medium">Temperature Limit Controls</TextBlock>
+                  <TextBlock FontSize="12" Foreground="Gray">Customise preset temperature limits</TextBlock>
+                </StackPanel>
+              </StackPanel>
+            </Expander.Header>
+            <StackPanel Margin="0,0,0,-12">
+              <TextBlock FontSize="15" Margin="0,0,0,8">Temperature Limit (°C)</TextBlock>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="0.2*"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdTemp, Mode=OneWay, Path=Value, StringFormat={}{0}°C}}}"/>
+                <Slider Name="sdTemp" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding Temp, Mode=TwoWay}" Maximum="95" Minimum="50" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
+                  <Slider.Resources>
+                    <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
+                    <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
+                  </Slider.Resources>
+                </Slider>
+              </Grid>
+            </StackPanel>
+          </Expander>
+          <Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
+            <Expander.Header>
+              <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
                 <TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe7e8;"/>
                 <StackPanel Margin="12,0,0,0">
                   <TextBlock FontSize="14" FontWeight="Medium">Power Limit Controls</TextBlock>
@@ -39,15 +60,15 @@
                 </StackPanel>
               </StackPanel>
             </Expander.Header>
-            <StackPanel>
+            <StackPanel Margin="0,0,0,-12">
               <TextBlock FontSize="15" Margin="0,0,0,8">Slow Boost Power Limit (W)</TextBlock>
               <Grid>
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="0.2*"/>
                   <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock FontSize="14" Grid.Column="0">35W</TextBlock>
-                <Slider Grid.Column="1" Margin="0,-14.5,0,0" Value="35" Maximum="60">
+                <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPL1, Mode=OneWay, Path=Value, StringFormat={}{0}W}}}"/>
+                <Slider Name="sdPL1" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL1, Mode=TwoWay}" Maximum="60" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
                   <Slider.Resources>
                     <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
                     <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -61,8 +82,8 @@
                   <ColumnDefinition Width="0.2*"/>
                   <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock FontSize="14" Grid.Column="0">55W</TextBlock>
-                <Slider Grid.Column="1" Margin="0,-14.5,0,0" Value="55" Maximum="60">
+                <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPL2, Mode=OneWay, Path=Value, StringFormat={}{0}W}}}"/>
+                <Slider Name="sdPL2" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL2, Mode=TwoWay}" Maximum="60" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
                   <Slider.Resources>
                     <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
                     <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -74,8 +95,7 @@
         </DockPanel>
       </Grid>
     </ScrollViewer>
-    <!--<TextBlock Text="{Binding Greeting}" Grid.Column="0" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-    <Border Background="#fff" CornerRadius="3" BorderBrush="#CCC" BorderThickness="1" Margin="12,12,0,12">
+    <Border Name="brLeftSide" Background="#fff" CornerRadius="3" BorderBrush="#CCC" BorderThickness="1" Margin="12,12,0,12">
       <DockPanel LastChildFill="True">
         <TextBlock FontSize="26" Margin="8,8,0,0" DockPanel.Dock="Top">Framework Laptop 13 (2023)</TextBlock>
         <TextBlock FontSize="12" Margin="10,4,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Ryzen™ 7 7840U w/ Radeon 780M Graphics</TextBlock>
