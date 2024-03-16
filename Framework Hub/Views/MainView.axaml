@@ -244,7 +244,7 @@
 					</ListBox.ItemTemplate>
 				</ListBox>
 				<!--Device Image-->
-				<Image Source="\Assets\framework-laptop-13.png" HorizontalAlignment="Center" Margin="45,9,45,0"></Image>
+				<Image Source="\Assets\framework-laptop-13-2.png" HorizontalAlignment="Center" Margin="25,9,25,9"></Image>
 			</DockPanel>
 		</Border>
 	</Grid>
