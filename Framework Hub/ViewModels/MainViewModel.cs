@@ -12,7 +12,7 @@ public class MainViewModel : ViewModelBase
     private int _temp;
     private int _allCO;
     private int _gfxCO;
-
+    private int _pboOffset;
     public int Temp
     {
         get { return _temp; }
@@ -78,6 +78,19 @@ public class MainViewModel : ViewModelBase
         }
     }
 
+    public int PboOffset
+    {
+        get { return _pboOffset; }
+        set
+        {
+            if (_pboOffset != value)
+            {
+                _pboOffset = value;
+                OnPropertyChanged(nameof(PboOffset));
+            }
+        }
+    }
+
     public event PropertyChangedEventHandler PropertyChanged;
 
     protected virtual void OnPropertyChanged(string propertyName)
@@ -90,8 +103,9 @@ public class MainViewModel : ViewModelBase
         // Set default values
         PL1 = 35;
         PL2 = 55;
-        Temp = 95;
+        Temp = 100;
         AllCO = 0;
         GfxCO = 0;
+        PboOffset = 0;
     }
 }

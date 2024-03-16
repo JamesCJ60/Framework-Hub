@@ -4,216 +4,248 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              
              xmlns:vm="clr-namespace:Framework_Hub.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="650"
              x:Class="Framework_Hub.Views.MainView"
              Background="#f2f2f2"
              
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives">
 
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="1.38*"/>
-      <ColumnDefinition Width="*"/>
-    </Grid.ColumnDefinitions>
-    <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="0,12,0,12">
-      <ScrollViewer.Styles>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1.38*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="0,12,0,12">
+			<ScrollViewer.Styles>
 
-      </ScrollViewer.Styles>
-      <Grid>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-          <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <DockPanel LastChildFill="False">
-          <Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,0,12,0">
-            <Expander.Header>
-              <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xecad;"/>
-                <StackPanel Margin="12,0,0,0">
-                  <TextBlock FontSize="14" FontWeight="Medium">Temperature Limit Controls</TextBlock>
-                  <TextBlock FontSize="12" Foreground="Gray">Customise preset temperature limits</TextBlock>
-                </StackPanel>
-              </StackPanel>
-            </Expander.Header>
-            <StackPanel Margin="0,0,0,-12">
-              <TextBlock FontSize="15" Margin="0,0,0,8">Temperature Limit (°C)</TextBlock>
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="50"/>
-                  <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdTemp, Mode=OneWay, Path=Value, StringFormat={}{0}°C}}}"/>
-                <Slider Name="sdTemp" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding Temp, Mode=TwoWay}" Maximum="95" Minimum="50" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
-                  <Slider.Resources>
-                    <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
-                    <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
-                  </Slider.Resources>
-                </Slider>
-              </Grid>
-            </StackPanel>
-          </Expander>
-          <Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
-            <Expander.Header>
-              <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe7e8;"/>
-                <StackPanel Margin="12,0,0,0">
-                  <TextBlock FontSize="14" FontWeight="Medium">Power Limit Controls</TextBlock>
-                  <TextBlock FontSize="12" Foreground="Gray">Customise preset power limits</TextBlock>
-                </StackPanel>
-              </StackPanel>
-            </Expander.Header>
-            <StackPanel Margin="0,0,0,-12">
-              <TextBlock FontSize="15" Margin="0,0,0,8">Slow Boost Power Limit (W)</TextBlock>
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="50"/>
-                  <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPL1, Mode=OneWay, Path=Value, StringFormat={}{0}W}}}"/>
-                <Slider Name="sdPL1" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL1, Mode=TwoWay}" Maximum="60" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
-                  <Slider.Resources>
-                    <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
-                    <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
-                  </Slider.Resources>
-                </Slider>
-              </Grid>
+			</ScrollViewer.Styles>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<DockPanel LastChildFill="False">
+					<Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,0,12,0">
+						<Expander.Header>
+							<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+								<TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xecad;"/>
+								<StackPanel Margin="12,0,0,0">
+									<TextBlock FontSize="14" FontWeight="Medium">Temperature Limit Controls</TextBlock>
+									<TextBlock FontSize="12" Foreground="Gray">Customise preset temperature limits</TextBlock>
+								</StackPanel>
+							</StackPanel>
+						</Expander.Header>
+						<StackPanel Margin="0,0,0,-12">
+							<TextBlock FontSize="15" Margin="0,0,0,8">Temperature Limit (°C)</TextBlock>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="50"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdTemp, Mode=OneWay, Path=Value, StringFormat={}{0}°C}}}"/>
+								<Slider Name="sdTemp" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding Temp, Mode=TwoWay}" Maximum="100" Minimum="50" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
+									<Slider.Resources>
+										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
+										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
+									</Slider.Resources>
+								</Slider>
+							</Grid>
+						</StackPanel>
+					</Expander>
+					<Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
+						<Expander.Header>
+							<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+								<TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe7e8;"/>
+								<StackPanel Margin="12,0,0,0">
+									<TextBlock FontSize="14" FontWeight="Medium">Power Limit Controls</TextBlock>
+									<TextBlock FontSize="12" Foreground="Gray">Customise preset power limits</TextBlock>
+								</StackPanel>
+							</StackPanel>
+						</Expander.Header>
+						<StackPanel Margin="0,0,0,-12">
+							<TextBlock FontSize="15" Margin="0,0,0,8">Slow Boost Power Limit (W)</TextBlock>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="50"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPL1, Mode=OneWay, Path=Value, StringFormat={}{0}W}}}"/>
+								<Slider Name="sdPL1" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL1, Mode=TwoWay}" Maximum="60" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
+									<Slider.Resources>
+										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
+										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
+									</Slider.Resources>
+								</Slider>
+							</Grid>
 
-              <TextBlock FontSize="15" Margin="0,0,0,8">Fast Boost Power Limit (W)</TextBlock>
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="50"/>
-                  <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPL2, Mode=OneWay, Path=Value, StringFormat={}{0}W}}}"/>
-                <Slider Name="sdPL2" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL2, Mode=TwoWay}" Maximum="60" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
-                  <Slider.Resources>
-                    <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
-                    <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
-                  </Slider.Resources>
-                </Slider>
-              </Grid>
-            </StackPanel>
-          </Expander>
+							<TextBlock FontSize="15" Margin="0,0,0,8">Fast Boost Power Limit (W)</TextBlock>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="50"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPL2, Mode=OneWay, Path=Value, StringFormat={}{0}W}}}"/>
+								<Slider Name="sdPL2" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL2, Mode=TwoWay}" Maximum="60" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
+									<Slider.Resources>
+										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
+										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
+									</Slider.Resources>
+								</Slider>
+							</Grid>
+						</StackPanel>
+					</Expander>
 
-          <Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
-            <Expander.Header>
-              <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe945;"/>
-                <StackPanel Margin="12,0,0,0">
-                  <TextBlock FontSize="14" FontWeight="Medium">Curve Optimiser Controls</TextBlock>
-                  <TextBlock FontSize="12" Foreground="Gray">Customise preset voltage offsets</TextBlock>
-                </StackPanel>
-              </StackPanel>
-            </Expander.Header>
-            <StackPanel Margin="0,0,0,-12">
-              <TextBlock FontSize="15" Margin="0,0,0,8">All Core Offset</TextBlock>
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="50"/>
-                  <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdAllCO, Mode=OneWay, Path=Value}"/>
-                <Slider Name="sdAllCO" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding AllCO, Mode=TwoWay}" Maximum="0" Minimum="-64" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
-                  <Slider.Resources>
-                    <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
-                    <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
-                  </Slider.Resources>
-                </Slider>
-              </Grid>
+					<Expander IsExpanded="False" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
+						<Expander.Header>
+							<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+								<TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe945;"/>
+								<StackPanel Margin="12,0,0,0">
+									<TextBlock FontSize="14" FontWeight="Medium">Curve Optimiser Controls</TextBlock>
+									<TextBlock FontSize="12" Foreground="Gray">Customise preset voltage offsets</TextBlock>
+								</StackPanel>
+							</StackPanel>
+						</Expander.Header>
+						<StackPanel Margin="0,0,0,-12">
+							<TextBlock FontSize="15" Margin="0,0,0,8">All Core Offset</TextBlock>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="50"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdAllCO, Mode=OneWay, Path=Value}"/>
+								<Slider Name="sdAllCO" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding AllCO, Mode=TwoWay}" Maximum="0" Minimum="-64" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
+									<Slider.Resources>
+										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
+										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
+									</Slider.Resources>
+								</Slider>
+							</Grid>
 
-              <TextBlock FontSize="15" Margin="0,0,0,8">iGPU Offset</TextBlock>
-              <Grid>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="50"/>
-                  <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdGfxCO, Mode=OneWay, Path=Value}"/>
-                <Slider Name="sdGfxCO" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding GfxCO, Mode=TwoWay}" Maximum="0" Minimum="-64" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
-                  <Slider.Resources>
-                    <x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
-                    <x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
-                  </Slider.Resources>
-                </Slider>
-              </Grid>
-            </StackPanel>
-          </Expander>
-        </DockPanel>
-      </Grid>
-    </ScrollViewer>
-    <Border Name="brLeftSide" Background="#fff" CornerRadius="3" BorderBrush="#CCC" BorderThickness="1" Margin="12,12,0,12">
-      <DockPanel LastChildFill="True">
-        <TextBlock FontSize="26" Margin="8,8,0,0" DockPanel.Dock="Top">Framework Laptop 13 (2023)</TextBlock>
-        <TextBlock FontSize="12" Margin="10,4,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Ryzen™ 7 7840U w/ Radeon 780M Graphics</TextBlock>
-        <TextBlock FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Radeon 780M</TextBlock>
-        <TextBlock FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- 32GB DDR5 5600MT/s</TextBlock>
-        <ListBox Name="lbPresets" Background="Transparent" Padding="0" Margin="-2,12,0,12" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
-          <ListBox.ItemsPanel>
-            <ItemsPanelTemplate>
-              <StackPanel Orientation="Horizontal"/>
-            </ItemsPanelTemplate>
-          </ListBox.ItemsPanel>
-          <ListBox.Styles>
-            <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
-              <Setter Property="Background" Value="Transparent"/>
-              <Setter Property="ContentTemplate">
-                <DataTemplate>
-                  <Border Background="#f2f2f2" CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
-                    <DockPanel Width="142" Height="40" Margin="{Binding Margin}" LastChildFill="True">
-                      <Border DockPanel.Dock="Bottom" BorderBrush="#F77245" VerticalAlignment="Center" Height="3.3" BorderThickness="3" CornerRadius="4" Width="48" ZIndex="0"/>
-                      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" MaxWidth="120" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
-                        <TextBlock FontSize="24" Foreground="#F77245" FontFamily="Segoe Fluent Icons" Text="{Binding Icon}" Margin="0,5,0,0"/>
-                        <TextBlock FontSize="14" Foreground="#F77245" Text="{Binding Sub}" Margin="8,9,0,0" TextAlignment="Center"/>
-                      </StackPanel>
-                    </DockPanel>
-                  </Border>
-                </DataTemplate>
-              </Setter>
-            </Style>
-            <Style Selector="ListBoxItem:pointerover  /template/ ContentPresenter">
-              <Setter Property="Background" Value="Transparent"/>
-              <Setter Property="ContentTemplate">
-                <DataTemplate>
-                  <Border Background="#f2f2f2" CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
-                    <DockPanel Width="142" Height="40" Margin="{Binding Margin}" LastChildFill="True">
-                      <Border DockPanel.Dock="Bottom" BorderBrush="#F77245" VerticalAlignment="Center" Height="3.3" BorderThickness="3" CornerRadius="4" Width="48" ZIndex="0"/>
-                      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" MaxWidth="120" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
-                        <TextBlock FontSize="24" Foreground="#F77245" FontFamily="Segoe Fluent Icons" Text="{Binding Icon}" Margin="0,5,0,0"/>
-                        <TextBlock FontSize="14" Foreground="#F77245" Text="{Binding Sub}" Margin="8,9,0,0" TextAlignment="Center"/>
-                      </StackPanel>
-                    </DockPanel>
-                  </Border>
-                </DataTemplate>
-              </Setter>
-            </Style>
-            <Style Selector="ListBoxItem">
-              <Setter Property="Height" Value="40"/>
-              <Setter Property="Width" Value="142"/>
-              <Setter Property="Margin" Value="6,0,6,0"/>
-              <Setter Property="Padding" Value="0"/>
-              <Setter Property="HorizontalAlignment" Value="Center"/>
-            </Style>
-          </ListBox.Styles>
+							<TextBlock FontSize="15" Margin="0,0,0,8">iGPU Offset</TextBlock>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="50"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdGfxCO, Mode=OneWay, Path=Value}"/>
+								<Slider Name="sdGfxCO" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding GfxCO, Mode=TwoWay}" Maximum="0" Minimum="-64" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
+									<Slider.Resources>
+										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
+										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
+									</Slider.Resources>
+								</Slider>
+							</Grid>
+						</StackPanel>
+					</Expander>
 
-          <ListBox.ItemTemplate>
-            <DataTemplate>
-              <Border Background="Transparent" CornerRadius="4" BorderBrush="Transparent" BorderThickness="1.2">
-                <DockPanel Width="142" Height="40" Margin="{Binding Margin}" LastChildFill="True">
-                  <Border DockPanel.Dock="Bottom" BorderBrush="Transparent" VerticalAlignment="Center" Height="3.3" BorderThickness="3" CornerRadius="4" Width="48" ZIndex="0"/>
-                  <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" MaxWidth="120" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
-                    <TextBlock FontSize="24" Foreground="Black" FontFamily="Segoe Fluent Icons" Text="{Binding Icon}" Margin="0,5,0,0"/>
-                    <TextBlock FontSize="14" Foreground="Black" Text="{Binding Sub}" Margin="8,9,0,0" TextAlignment="Center"/>
-                  </StackPanel>
-                </DockPanel>
-              </Border>
-            </DataTemplate>
-          </ListBox.ItemTemplate>
-        </ListBox>
-        <Image Source="\Assets\framework-laptop-13.png" HorizontalAlignment="Center" Margin="45,9,45,0"></Image>
+					<Expander IsExpanded="False" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
+						<Expander.Header>
+							<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+								<TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe945;"/>
+								<StackPanel Margin="12,0,0,0">
+									<TextBlock FontSize="14" FontWeight="Medium">Precision Boost Overdrive</TextBlock>
+									<TextBlock FontSize="12" Foreground="Gray">Customise preset PBO settings</TextBlock>
+								</StackPanel>
+							</StackPanel>
+						</Expander.Header>
+						<StackPanel Margin="0,0,0,-12">
+							<TextBlock FontSize="15" Margin="0,0,0,8">PBO Scaler</TextBlock>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="50"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPBOOffset, Mode=OneWay, Path=Value}"/>
+								<Slider Name="sdPBOOffset" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PboOffset, Mode=TwoWay}" Maximum="10" Minimum="0" SmallChange="1" LargeChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
+									<Slider.Resources>
+										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
+										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
+									</Slider.Resources>
+								</Slider>
+							</Grid>
+						</StackPanel>
+					</Expander>
+				</DockPanel>
+			</Grid>
+		</ScrollViewer>
 
-      </DockPanel>
-    </Border>
-  </Grid>
+		<!--Main Profile Selection Section-->
+		<Border Name="brLeftSide" Background="#fff" CornerRadius="3" BorderBrush="#CCC" BorderThickness="1" Margin="12,12,0,12">
+			<DockPanel LastChildFill="True">
+				<!--Device Information-->
+				<TextBlock FontSize="26" Margin="8,8,0,0" DockPanel.Dock="Top">Framework Laptop 13 (2023)</TextBlock>
+				<TextBlock FontSize="12" Margin="10,4,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Ryzen™ 7 7840U w/ Radeon 780M Graphics</TextBlock>
+				<TextBlock FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Radeon 780M</TextBlock>
+				<TextBlock FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- 32GB DDR5 5600MT/s</TextBlock>
+				<!--Power Mode List-->
+				<ListBox Name="lbPresets" Background="Transparent" Padding="0" Margin="-2,12,0,12" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal"/>
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+					<ListBox.Styles>
+						<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+							<Setter Property="Background" Value="Transparent"/>
+							<Setter Property="ContentTemplate">
+								<DataTemplate>
+									<Border CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
+										<DockPanel Width="162" Height="40" Margin="{Binding Margin}" LastChildFill="True">
+											<Border DockPanel.Dock="Bottom" BorderBrush="#F77245" VerticalAlignment="Center" Height="3.3" BorderThickness="3" CornerRadius="4" Width="48" ZIndex="0"/>
+											<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" MaxWidth="120" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
+												<TextBlock FontSize="24" Foreground="#F77245" FontFamily="Segoe Fluent Icons" Text="{Binding Icon}" Margin="0,5,0,0"/>
+												<TextBlock FontSize="14" Foreground="#F77245" Text="{Binding Sub}" Margin="8,9,0,0" TextAlignment="Center"/>
+											</StackPanel>
+										</DockPanel>
+									</Border>
+								</DataTemplate>
+							</Setter>
+						</Style>
+						<Style Selector="ListBoxItem:pointerover  /template/ ContentPresenter">
+							<Setter Property="Background" Value="Transparent"/>
+							<Setter Property="ContentTemplate">
+								<DataTemplate>
+									<Border CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
+										<DockPanel Width="1620" Height="40" Margin="{Binding Margin}" LastChildFill="True">
+											<Border DockPanel.Dock="Bottom" BorderBrush="#F77245" VerticalAlignment="Center" Height="3.3" BorderThickness="3" CornerRadius="4" Width="48" ZIndex="0"/>
+											<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" MaxWidth="120" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
+												<TextBlock FontSize="24" Foreground="#F77245" FontFamily="Segoe Fluent Icons" Text="{Binding Icon}" Margin="0,5,0,0"/>
+												<TextBlock FontSize="14" Foreground="#F77245" Text="{Binding Sub}" Margin="8,9,0,0" TextAlignment="Center"/>
+											</StackPanel>
+										</DockPanel>
+									</Border>
+								</DataTemplate>
+							</Setter>
+						</Style>
+						<Style Selector="ListBoxItem">
+							<Setter Property="Height" Value="40"/>
+							<Setter Property="Width" Value="162"/>
+							<Setter Property="Margin" Value="6,0,6,0"/>
+							<Setter Property="Padding" Value="0"/>
+							<Setter Property="HorizontalAlignment" Value="Center"/>
+						</Style>
+					</ListBox.Styles>
+
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border Background="Transparent" CornerRadius="4" BorderBrush="Transparent" BorderThickness="1.2">
+								<DockPanel Width="162" Height="40" Margin="{Binding Margin}" LastChildFill="True">
+									<Border DockPanel.Dock="Bottom" BorderBrush="Transparent" VerticalAlignment="Center" Height="3.3" BorderThickness="3" CornerRadius="4" Width="48" ZIndex="0"/>
+									<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" MaxWidth="120" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
+										<TextBlock FontSize="24" Foreground="Black" FontFamily="Segoe Fluent Icons" Text="{Binding Icon}" Margin="0,5,0,0"/>
+										<TextBlock FontSize="14" Foreground="Black" Text="{Binding Sub}" Margin="8,9,0,0" TextAlignment="Center"/>
+									</StackPanel>
+								</DockPanel>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+				<!--Device Image-->
+				<Image Source="\Assets\framework-laptop-13.png" HorizontalAlignment="Center" Margin="45,9,45,0"></Image>
+			</DockPanel>
+		</Border>
+	</Grid>
 </UserControl>
