@@ -17,7 +17,8 @@
         Foreground="Black"
         xmlns:sty="using:FluentAvalonia.Styling"
         xmlns:ui="using:FluentAvalonia.UI.Controls"
-        xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives">
+        xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives"
+		>
   
   <DockPanel>
     <Border DockPanel.Dock="Top" Height="38" Background="#fff" PointerMoved="InputElement_OnPointerMoved" PointerPressed="InputElement_OnPointerPressed" PointerReleased="InputElement_OnPointerReleased">

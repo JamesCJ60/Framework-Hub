@@ -2,7 +2,9 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Threading;
 using System;
+using System.Timers;
 
 namespace Framework_Hub.Views;
 
@@ -22,11 +24,12 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         lbSide.Items.Add(new SideMenu { Icon = "\ue80f", Sub = "Home", Margin = new Thickness(0,-8,0,-8) });
-        lbSide.Items.Add(new SideMenu { Icon = "\uea80", Sub = "KBD LED", Margin = new Thickness(0,-8,0,-8) });
+        //lbSide.Items.Add(new SideMenu { Icon = "\uea80", Sub = "KBD LED", Margin = new Thickness(0,-8,0,-8) });
         lbSide.Items.Add(new SideMenu { Icon = "\ue8ab", Sub = "Auto", Margin = new Thickness(0,-8,0,-8) });
+        lbSide.Items.Add(new SideMenu { Icon = "\ue713", Sub = "Settings", Margin = new Thickness(0, -8, 0, -8) });
         lbSide.SelectedIndex = 0;
 
-        this.MinWidth = 975;
+        this.MinWidth = 1080;
         this.MinHeight = 550;
 
         currentPage = new MainView();

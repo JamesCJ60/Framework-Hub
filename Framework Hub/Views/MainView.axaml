@@ -11,15 +11,14 @@
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives">
 
+	
+	
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="1.38*"/>
+			<ColumnDefinition Width="1.8*"/>
 			<ColumnDefinition Width="*"/>
 		</Grid.ColumnDefinitions>
-		<ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" Margin="0,12,0,12">
-			<ScrollViewer.Styles>
-
-			</ScrollViewer.Styles>
+		<ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Margin="0,12,0,12">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
@@ -115,7 +114,7 @@
 									<ColumnDefinition Width="50"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
-								<TextBlock Name="tbxWinPower" FontSize="14" Grid.Column="0" Text="{Binding WinPowerText}"/>
+								<TextBlock Name="tbxWinPower" FontFamily="Segoe Fluent Icons" FontSize="20" Grid.Column="0" Text="{Binding WinPowerText}"/>
 								<Slider Name="sdWinPower" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding WinPower, Mode=TwoWay}" Maximum="2" Minimum="0" SmallChange="1" LargeChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
 									<Slider.Resources>
 										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
