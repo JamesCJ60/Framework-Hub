@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 
 namespace Framework_Hub.ViewModels;
 
@@ -13,89 +15,63 @@ public class MainViewModel : ViewModelBase
     private int _allCO;
     private int _gfxCO;
     private int _pboOffset;
+    private int _winPower;
+    private string _winPowerText;
+
+    [Reactive]
     public int Temp
     {
-        get { return _temp; }
-        set
-        {
-            if (_temp != value)
-            {
-                _temp = value;
-                OnPropertyChanged(nameof(_temp));
-            }
-        }
+        get => _temp;
+        set => this.RaiseAndSetIfChanged(ref _temp, value);
     }
 
+    [Reactive]
     public int PL1
     {
-        get { return _pl1; }
-        set
-        {
-            if (_pl1 != value)
-            {
-                _pl1 = value;
-                OnPropertyChanged(nameof(PL1));
-            }
-        }
+        get => _pl1;
+        set => this.RaiseAndSetIfChanged(ref _pl1, value);
     }
 
+    [Reactive]
     public int PL2
     {
-        get { return _pl2; }
-        set
-        {
-            if (_pl2 != value)
-            {
-                _pl2 = value;
-                OnPropertyChanged(nameof(PL2));
-            }
-        }
+        get => _pl2;
+        set => this.RaiseAndSetIfChanged(ref _pl2, value);
     }
 
+    [Reactive]
     public int AllCO
     {
-        get { return _allCO; }
-        set
-        {
-            if (_allCO != value)
-            {
-                _allCO = value;
-                OnPropertyChanged(nameof(AllCO));
-            }
-        }
+        get => _allCO;
+        set => this.RaiseAndSetIfChanged(ref _allCO, value);
     }
 
+    [Reactive]
     public int GfxCO
     {
-        get { return _gfxCO; }
-        set
-        {
-            if (_gfxCO != value)
-            {
-                _gfxCO = value;
-                OnPropertyChanged(nameof(GfxCO));
-            }
-        }
+        get => _gfxCO;
+        set => this.RaiseAndSetIfChanged(ref _gfxCO, value);
     }
 
+    [Reactive]
     public int PboOffset
     {
-        get { return _pboOffset; }
-        set
-        {
-            if (_pboOffset != value)
-            {
-                _pboOffset = value;
-                OnPropertyChanged(nameof(PboOffset));
-            }
-        }
+        get => _pboOffset;
+        set => this.RaiseAndSetIfChanged(ref _pboOffset, value);
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged(string propertyName)
+    [Reactive]
+    public int WinPower
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        get => _winPower;
+        set => this.RaiseAndSetIfChanged(ref _winPower, value);
+    }
+
+    [Reactive]
+    public string WinPowerText
+    {
+        get => _winPowerText;
+        set => this.RaiseAndSetIfChanged(ref _winPowerText, value);
     }
 
     public MainViewModel()
@@ -106,6 +82,8 @@ public class MainViewModel : ViewModelBase
         Temp = 100;
         AllCO = 0;
         GfxCO = 0;
-        PboOffset = 0;
+        PboOffset = 1;
+        WinPower = 2;
+        WinPowerText = "Perf";
     }
 }

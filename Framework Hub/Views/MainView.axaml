@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             
+             xmlns:reactiveui="http://reactiveui.net"
              xmlns:vm="clr-namespace:Framework_Hub.ViewModels"
              mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="650"
              x:Class="Framework_Hub.Views.MainView"
@@ -45,8 +45,8 @@
 									<ColumnDefinition Width="50"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
-								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdTemp, Mode=OneWay, Path=Value, StringFormat={}{0}°C}}}"/>
-								<Slider Name="sdTemp" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding Temp, Mode=TwoWay}" Maximum="100" Minimum="50" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding Temp, StringFormat={}{0}°C}}}"/>
+								<Slider Name="sdTemp" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding Temp}" Maximum="100" Minimum="50" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
 									<Slider.Resources>
 										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
 										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -72,8 +72,8 @@
 									<ColumnDefinition Width="50"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
-								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPL1, Mode=OneWay, Path=Value, StringFormat={}{0}W}}}"/>
-								<Slider Name="sdPL1" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL1, Mode=TwoWay}" Maximum="60" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding PL1, StringFormat={}{0}W}}}"/>
+								<Slider Name="sdPL1" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL1}" Maximum="60" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
 									<Slider.Resources>
 										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
 										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -87,8 +87,36 @@
 									<ColumnDefinition Width="50"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
-								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPL2, Mode=OneWay, Path=Value, StringFormat={}{0}W}}}"/>
-								<Slider Name="sdPL2" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL2, Mode=TwoWay}" Maximum="60" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding PL2, StringFormat={}{0}W}}}"/>
+								<Slider Name="sdPL2" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL2}" Maximum="60" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
+									<Slider.Resources>
+										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
+										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
+									</Slider.Resources>
+								</Slider>
+							</Grid>
+						</StackPanel>
+					</Expander>
+
+					<Expander IsExpanded="False" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
+						<Expander.Header>
+							<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+								<TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe7e8;"/>
+								<StackPanel Margin="12,0,0,0">
+									<TextBlock FontSize="14" FontWeight="Medium">Windows Power Mode Controls</TextBlock>
+									<TextBlock FontSize="12" Foreground="Gray">Customise preset power mode settings</TextBlock>
+								</StackPanel>
+							</StackPanel>
+						</Expander.Header>
+						<StackPanel Margin="0,0,0,-12">
+							<TextBlock FontSize="15" Margin="0,0,0,8">Windows Power Mode</TextBlock>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="50"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Name="tbxWinPower" FontSize="14" Grid.Column="0" Text="{Binding WinPowerText}"/>
+								<Slider Name="sdWinPower" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding WinPower, Mode=TwoWay}" Maximum="2" Minimum="0" SmallChange="1" LargeChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
 									<Slider.Resources>
 										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
 										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -115,8 +143,8 @@
 									<ColumnDefinition Width="50"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
-								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdAllCO, Mode=OneWay, Path=Value}"/>
-								<Slider Name="sdAllCO" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding AllCO, Mode=TwoWay}" Maximum="0" Minimum="-64" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding AllCO}"/>
+								<Slider Name="sdAllCO" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding AllCO}" Maximum="0" Minimum="-64" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
 									<Slider.Resources>
 										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
 										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -130,8 +158,8 @@
 									<ColumnDefinition Width="50"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
-								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdGfxCO, Mode=OneWay, Path=Value}"/>
-								<Slider Name="sdGfxCO" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding GfxCO, Mode=TwoWay}" Maximum="0" Minimum="-64" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding GfxCO}"/>
+								<Slider Name="sdGfxCO" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding GfxCO}" Maximum="0" Minimum="-64" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
 									<Slider.Resources>
 										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
 										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -146,7 +174,7 @@
 							<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
 								<TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe945;"/>
 								<StackPanel Margin="12,0,0,0">
-									<TextBlock FontSize="14" FontWeight="Medium">Precision Boost Overdrive</TextBlock>
+									<TextBlock FontSize="14" FontWeight="Medium">Precision Boost Overdrive Controls</TextBlock>
 									<TextBlock FontSize="12" Foreground="Gray">Customise preset PBO settings</TextBlock>
 								</StackPanel>
 							</StackPanel>
@@ -158,8 +186,8 @@
 									<ColumnDefinition Width="50"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
-								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding ElementName=sdPBOOffset, Mode=OneWay, Path=Value}"/>
-								<Slider Name="sdPBOOffset" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PboOffset, Mode=TwoWay}" Maximum="10" Minimum="0" SmallChange="1" LargeChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
+								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding PboOffset}"/>
+								<Slider Name="sdPBOOffset" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PboOffset}" Maximum="10" Minimum="1" SmallChange="1" LargeChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
 									<Slider.Resources>
 										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
 										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -176,10 +204,10 @@
 		<Border Name="brLeftSide" Background="#fff" CornerRadius="3" BorderBrush="#CCC" BorderThickness="1" Margin="12,12,0,12">
 			<DockPanel LastChildFill="True">
 				<!--Device Information-->
-				<TextBlock FontSize="26" Margin="8,8,0,0" DockPanel.Dock="Top">Framework Laptop 13 (2023)</TextBlock>
-				<TextBlock FontSize="12" Margin="10,4,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Ryzen™ 7 7840U w/ Radeon 780M Graphics</TextBlock>
-				<TextBlock FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Radeon 780M</TextBlock>
-				<TextBlock FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- 32GB DDR5 5600MT/s</TextBlock>
+				<TextBlock Name="tbxLaptopName" FontSize="26" Margin="8,8,0,0" DockPanel.Dock="Top">Framework Laptop 13 (2023)</TextBlock>
+				<TextBlock Name="tbxCpuName" FontSize="12" Margin="10,4,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Ryzen™ 7 7840U w/ Radeon 780M Graphics</TextBlock>
+				<TextBlock Name="tbxGpuName" FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Radeon 780M</TextBlock>
+				<TextBlock Name="tbxRamSpecs" FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- 32GB DDR5 5600MT/s</TextBlock>
 				<!--Power Mode List-->
 				<ListBox Name="lbPresets" Background="Transparent" Padding="0" Margin="-2,12,0,12" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
 					<ListBox.ItemsPanel>
@@ -244,7 +272,7 @@
 					</ListBox.ItemTemplate>
 				</ListBox>
 				<!--Device Image-->
-				<Image Source="\Assets\framework-laptop-13-2.png" HorizontalAlignment="Center" Margin="25,9,25,9"></Image>
+				<Image Name="imgLaptop" Source="\Assets\framework-laptop-13-2.png" HorizontalAlignment="Center" Margin="25,9,25,9"></Image>
 			</DockPanel>
 		</Border>
 	</Grid>
