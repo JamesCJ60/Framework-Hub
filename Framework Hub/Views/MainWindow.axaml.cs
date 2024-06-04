@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
+using Framework_Hub.Scripts.Misc;
 using System;
 using System.Timers;
 
@@ -29,11 +30,13 @@ public partial class MainWindow : Window
         lbSide.Items.Add(new SideMenu { Icon = "\ue713", Sub = "Settings", Margin = new Thickness(0, -8, 0, -8) });
         lbSide.SelectedIndex = 0;
 
-        this.MinWidth = 1080;
+        this.MinWidth = 1120;
         this.MinHeight = 550;
 
         currentPage = new MainView();
         contentArea.Content = currentPage;
+
+        Garbage.Garbage_Collect();
     }
 
 

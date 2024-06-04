@@ -27,7 +27,7 @@
 					<RowDefinition Height="*"/>
 				</Grid.RowDefinitions>
 				<DockPanel LastChildFill="False">
-					<Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,0,12,0">
+					<Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,0,13,0">
 						<Expander.Header>
 							<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
 								<TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xecad;"/>
@@ -97,7 +97,7 @@
 						</StackPanel>
 					</Expander>
 
-					<Expander IsExpanded="False" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
+					<Expander IsExpanded="True" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
 						<Expander.Header>
 							<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
 								<TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe7e8;"/>
@@ -108,13 +108,13 @@
 							</StackPanel>
 						</Expander.Header>
 						<StackPanel Margin="0,0,0,-12">
-							<TextBlock FontSize="15" Margin="0,0,0,8">Windows Power Mode</TextBlock>
+							<TextBlock FontSize="15" Margin="0,0,0,8">Power Mode</TextBlock>
 							<Grid>
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="50"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
-								<TextBlock Name="tbxWinPower" FontFamily="Segoe Fluent Icons" FontSize="20" Grid.Column="0" Text="{Binding WinPowerText}"/>
+								<TextBlock Name="tbxWinPower" FontFamily="Segoe Fluent Icons" FontSize="20.5" Grid.Column="0" Text="{Binding WinPowerText}" Margin="8,0,0,0"/>
 								<Slider Name="sdWinPower" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding WinPower, Mode=TwoWay}" Maximum="2" Minimum="0" SmallChange="1" LargeChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
 									<Slider.Resources>
 										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
@@ -219,7 +219,7 @@
 							<Setter Property="Background" Value="Transparent"/>
 							<Setter Property="ContentTemplate">
 								<DataTemplate>
-									<Border CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
+									<Border CornerRadius="4" BorderBrush="#CCCCCC" BorderThickness="1.2">
 										<DockPanel Width="162" Height="40" Margin="{Binding Margin}" LastChildFill="True">
 											<Border DockPanel.Dock="Bottom" BorderBrush="#F77245" VerticalAlignment="Center" Height="3.3" BorderThickness="3" CornerRadius="4" Width="48" ZIndex="0"/>
 											<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" MaxWidth="120" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
@@ -235,7 +235,7 @@
 							<Setter Property="Background" Value="Transparent"/>
 							<Setter Property="ContentTemplate">
 								<DataTemplate>
-									<Border CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
+									<Border CornerRadius="4" BorderBrush="#CCCCCC" BorderThickness="1.2">
 										<DockPanel Width="1620" Height="40" Margin="{Binding Margin}" LastChildFill="True">
 											<Border DockPanel.Dock="Bottom" BorderBrush="#F77245" VerticalAlignment="Center" Height="3.3" BorderThickness="3" CornerRadius="4" Width="48" ZIndex="0"/>
 											<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" MaxWidth="120" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
@@ -271,7 +271,7 @@
 					</ListBox.ItemTemplate>
 				</ListBox>
 				<!--Device Image-->
-				<Image Name="imgLaptop" Source="\Assets\framework-laptop-13-2.png" HorizontalAlignment="Center" Margin="25,9,25,9"></Image>
+				<Image Name="imgLaptop" Source="\Assets\framework-laptop-13-2.png" HorizontalAlignment="Center" Margin="26,14,26,14"></Image>
 			</DockPanel>
 		</Border>
 	</Grid>

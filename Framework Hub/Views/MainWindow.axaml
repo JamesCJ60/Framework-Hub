@@ -78,7 +78,7 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="ContentTemplate">
               <DataTemplate>
-                <Border CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
+                <Border CornerRadius="4" BorderBrush="#CCCCCC" BorderThickness="1.2">
                   <DockPanel Width="59" Height="56" Margin="{Binding Margin}" LastChildFill="True">
                     <Border DockPanel.Dock="Left" BorderBrush="#F77245" VerticalAlignment="Center" Height="21" BorderThickness="3" CornerRadius="4" Width="3.3" ZIndex="0"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
@@ -94,7 +94,7 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="ContentTemplate">
               <DataTemplate>
-                <Border CornerRadius="4" BorderBrush="#DDDDDD" BorderThickness="1.2">
+                <Border CornerRadius="4" BorderBrush="#CCCCCC" BorderThickness="1.2">
                   <DockPanel Width="59" Height="56" Margin="{Binding Margin}" LastChildFill="True">
                     <Border DockPanel.Dock="Left" BorderBrush="#F77245" VerticalAlignment="Center" Height="21" BorderThickness="3" CornerRadius="4" Width="3.3" ZIndex="0"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" MaxWidth="52" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
@@ -128,6 +128,6 @@
         </ListBox.ItemTemplate>
       </ListBox>
     </Border>
-    <ContentControl Name="contentArea" BorderBrush="#DDDDDD" Background="#f2f2f2" BorderThickness="1.2" CornerRadius="4,0,0,0"/>
+    <ContentControl Name="contentArea" BorderBrush="#CCCCCC" Background="#f2f2f2" BorderThickness="1.2" CornerRadius="4,0,0,0"/>
   </DockPanel>
 </Window>

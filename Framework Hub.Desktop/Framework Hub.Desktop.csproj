@@ -8,7 +8,16 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>AnyCPU;x64</Platforms>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <Product>Framework Hub</Product>
+    <Title>Framework Hub</Title>
+    <PlatformTarget>x64</PlatformTarget>
+    <AssemblyName>Framework</AssemblyName>
+    <ApplicationIcon>avalonia-logo.ico</ApplicationIcon>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="avalonia-logo.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />

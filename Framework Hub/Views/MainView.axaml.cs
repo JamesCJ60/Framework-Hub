@@ -2,7 +2,6 @@
 using Avalonia.Controls;
 using Framework_Hub.Scripts.Windows.Misc;
 using Framework_Hub.ViewModels;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Drawing;
 using System.IO;
