@@ -7,7 +7,6 @@
              mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="650"
              x:Class="Framework_Hub.Views.MainView"
              Background="#f2f2f2"
-             
         xmlns:ui="using:FluentAvalonia.UI.Controls"
         xmlns:uip="using:FluentAvalonia.UI.Controls.Primitives">
 
@@ -72,7 +71,7 @@
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
 								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding PL1, StringFormat={}{0}W}}}"/>
-								<Slider Name="sdPL1" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL1}" Maximum="60" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
+								<Slider Name="sdPL1" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL1}" Maximum="{Binding PL1Max}" Minimum="{Binding PL1Min}" SmallChange="1" LargeChange="5" TickFrequency="1" IsSnapToTickEnabled="True">
 									<Slider.Resources>
 										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
 										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -87,7 +86,7 @@
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
 								<TextBlock FontSize="14" Grid.Column="0" Text="{Binding PL2, StringFormat={}{0}W}}}"/>
-								<Slider Name="sdPL2" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL2}" Maximum="60" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
+								<Slider Name="sdPL2" Grid.Column="1" Margin="0,-14.5,0,0" Value="{Binding PL2}" Maximum="{Binding PL2Max}" Minimum="{Binding PL2Min}" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1">
 									<Slider.Resources>
 										<x:Double x:Key="SliderHorizontalThumbWidth">15</x:Double>
 										<x:Double x:Key="SliderHorizontalThumbHeight">15</x:Double>
@@ -125,7 +124,7 @@
 						</StackPanel>
 					</Expander>
 
-					<Expander IsExpanded="False" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
+					<Expander IsExpanded="False" Name="expCO" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
 						<Expander.Header>
 							<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
 								<TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe945;"/>
@@ -168,7 +167,7 @@
 						</StackPanel>
 					</Expander>
 
-					<Expander IsExpanded="False" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
+					<Expander IsExpanded="False" Name="expPBO" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="12,12,12,0">
 						<Expander.Header>
 							<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
 								<TextBlock VerticalAlignment="Center" FontSize="20" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Center" Text="&#xe945;"/>
@@ -208,7 +207,7 @@
 				<TextBlock Name="tbxGpuName" FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- AMD Radeon 780M</TextBlock>
 				<TextBlock Name="tbxRamSpecs" FontSize="12" Margin="10,2,0,0" DockPanel.Dock="Top" Foreground="Gray">- 32GB DDR5 5600MT/s</TextBlock>
 				<!--Power Mode List-->
-				<ListBox Name="lbPresets" Background="Transparent" Padding="0" Margin="-2,12,0,12" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+				<ListBox Name="lbPresets" SelectedIndex="{Binding PowerIndex, Mode=TwoWay}" Background="Transparent" Padding="0" Margin="-2,12,0,12" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
 					<ListBox.ItemsPanel>
 						<ItemsPanelTemplate>
 							<StackPanel Orientation="Horizontal"/>

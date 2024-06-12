@@ -3,13 +3,21 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <AvaloniaXaml Remove="Styles\**" />
+    <Compile Remove="Styles\**" />
+    <EmbeddedResource Remove="Styles\**" />
+    <None Remove="Styles\**" />
   </ItemGroup>
 
   
@@ -35,6 +43,5 @@
     <Folder Include="Scripts\Linux\EC Control\" />
     <Folder Include="Scripts\Linux\Intel\" />
     <Folder Include="Scripts\Windows\Intel\" />
-    <Folder Include="Styles\" />
   </ItemGroup>
 </Project>
