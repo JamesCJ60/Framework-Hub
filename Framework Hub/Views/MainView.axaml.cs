@@ -54,6 +54,7 @@ public partial class MainView : UserControl
             expPBO.IsVisible = false;
         }
 
+        // Update to correct values on load
         sdPL1.Value = mainViewModel.PL1;
         sdPL2.Value = mainViewModel.PL2;
         lbPresets.SelectedIndex = mainViewModel.PowerIndex;

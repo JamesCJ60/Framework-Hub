@@ -235,7 +235,7 @@
 							<Setter Property="ContentTemplate">
 								<DataTemplate>
 									<Border CornerRadius="4" BorderBrush="#CCCCCC" BorderThickness="1.2">
-										<DockPanel Width="1620" Height="40" Margin="{Binding Margin}" LastChildFill="True">
+										<DockPanel Width="162" Height="40" Margin="{Binding Margin}" LastChildFill="True">
 											<Border DockPanel.Dock="Bottom" BorderBrush="#F77245" VerticalAlignment="Center" Height="3.3" BorderThickness="3" CornerRadius="4" Width="48" ZIndex="0"/>
 											<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" MaxWidth="120" Background="Transparent" ZIndex="1" Margin="0,3,2.8,0">
 												<TextBlock FontSize="24" Foreground="#F77245" FontFamily="Segoe Fluent Icons" Text="{Binding Icon}" Margin="0,5,0,0"/>

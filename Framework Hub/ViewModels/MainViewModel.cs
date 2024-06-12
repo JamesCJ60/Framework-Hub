@@ -7,12 +7,16 @@ using Framework_Hub.Scripts.Windows.RyzenAdj;
 using Framework_Hub.Scripts.Linux.RyzenAdj;
 using System.Runtime.InteropServices;
 using Framework_Hub.Scripts.Windows.Misc;
+using System.Linq.Expressions;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Threading.Tasks;
 
 namespace Framework_Hub.ViewModels
 {
     public class MainViewModel : ReactiveObject
     {
-        private int _powerIndex;
+        private int _powerIndex = 2;
 
         private int _pl1 = 999;
         private int _pl2 = 999;
@@ -22,15 +26,21 @@ namespace Framework_Hub.ViewModels
         private int _pl1Min = 999;
         private int _pl2Min = 999;
 
-        private int _temp;
+        private int _temp = 100;
 
-        private int _allCO;
-        private int _gfxCO;
+        private int _allCO = 0;
+        private int _gfxCO = 0;
 
-        private int _pboOffset;
+        private int _pboOffset = 1;
 
         private int _winPower;
         private string _winPowerText;
+
+        public event System.EventHandler PowerUpdated;
+        protected virtual void OnPowerUpdated()
+        {
+            OnPowerChange();
+        }
 
         [Reactive]
         public int PowerIndex
@@ -123,30 +133,54 @@ namespace Framework_Hub.ViewModels
 
         public MainViewModel()
         {
-            // Set event for power related value changes 
-            this.WhenAnyValue(
-                x => x.Temp,
-                x => x.PL1,
-                x => x.PL2,
-                x => x.AllCO,
-                x => x.GfxCO,
-                x => x.PboOffset,
-                x => x.WinPower
-            ).Subscribe(_ => OnPowerChange());
+            // Setup event to detect variable changes
+            var propertySelectors = new Expression<Func<MainViewModel, int>>[]
+            {
+            x => x.Temp,
+            x => x.PL1,
+            x => x.PL2,
+            x => x.AllCO,
+            x => x.GfxCO,
+            x => x.PboOffset,
+            x => x.WinPower,
+            x => x.PowerIndex
+            };
 
-            PowerIndex = 2;
-            Temp = 100;
+            var observables = propertySelectors
+                .Select(selector => this.WhenAnyValue<MainViewModel, int>(selector))
+                .ToArray();
+
+            var mergedObservable = Observable.Merge(observables);
+
+            mergedObservable.Subscribe(_ => OnPowerChange());
 
             // Setup temp defaults for each power mode
             SetUpTempPower();
         }
-        int runs = 0;
-        private void OnPowerChange()
+
+        int lastPowerMode = -1;
+        private async void OnPowerChange()
         {
+            // Update Windows power mode setting 
+            WinPowerMode.SetWinPowerMode(WinPower);
+
             // Update Windows power mode icon
             if (WinPower == 0) WinPowerText = "\ue8be";
             else if (WinPower == 1) WinPowerText = "\uec49";
             else if (WinPower == 2) WinPowerText = "\uec4a";
+
+            if(lastPowerMode != PowerIndex)
+            {
+                SetUpTempPower();
+                lastPowerMode = PowerIndex;
+            }
+
+            await ApplyPowerSettings();
+        }
+
+        public async Task ApplyPowerSettings()
+        {
+            await Task.Delay(1500); // Delay for 1.5 seconds
 
             // RyzenAdj apply code for Windows 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -183,7 +217,7 @@ namespace Framework_Hub.ViewModels
         private void SetUpTempPower()
         {
             // Setup temp defaults for each power mode
-            if (GetSystemInfo.Product.Contains("16"))
+            if (GetSystemInfo.Product.Contains("16") && GetSystemInfo.IsGPUPresent("RX 7700S"))
             {
                 if (PowerIndex == 0)
                 {
@@ -208,6 +242,32 @@ namespace Framework_Hub.ViewModels
                 PL2Min = 10;
                 PL1Max = 140;
                 PL2Max = 140;
+            }
+            else if (GetSystemInfo.Product.Contains("13"))
+            {
+                if (PowerIndex == 0)
+                {
+                    PL1 = 15;
+                    PL2 = 18;
+                    WinPower = 0;
+                }
+                else if (PowerIndex == 1)
+                {
+                    PL1 = 28;
+                    PL2 = 28;
+                    WinPower = 1;
+                }
+                else if (PowerIndex == 2)
+                {
+                    PL1 = 35;
+                    PL2 = 60;
+                    WinPower = 2;
+                }
+
+                PL1Min = 5;
+                PL2Min = 5;
+                PL1Max = 60;
+                PL2Max = 60;
             }
         }
     }
