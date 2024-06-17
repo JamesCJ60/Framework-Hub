@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Framework_Hub.Services;
 using static Framework_Hub.Services.AppSettings;
 using System.IO;
+using static Framework_Hub.Services.PowerModeSettings;
 
 namespace Framework_Hub.ViewModels
 {
@@ -131,6 +132,7 @@ namespace Framework_Hub.ViewModels
         }
 
         AppSettingsManager appSettings = new AppSettingsManager("Settings.json");
+        PowerModeSettingsManager powerModeSettings = new PowerModeSettingsManager("PowerSettings.json");
 
         public MainViewModel()
         {
@@ -140,7 +142,7 @@ namespace Framework_Hub.ViewModels
                 PowerIndex = settings.lastPowerMode;
             }
             else PowerIndex = 2;
-            
+
 
             // Setup event to detect variable changes
             var propertySelectors = new Expression<Func<MainViewModel, int>>[]
@@ -178,11 +180,13 @@ namespace Framework_Hub.ViewModels
             else if (WinPower == 1) WinPowerText = "\uec49";
             else if (WinPower == 2) WinPowerText = "\uec4a";
 
-            if(lastPowerMode != PowerIndex)
+            if (lastPowerMode != PowerIndex)
             {
                 SetUpTempPower();
                 lastPowerMode = PowerIndex;
             }
+
+            SavePreset();
 
             await ApplyPowerSettings();
         }
@@ -223,7 +227,7 @@ namespace Framework_Hub.ViewModels
                 RyzenAdj_Backend_Linux.set_fast_limit(RyzenAdj_Backend_Linux.ry, (uint)(PL2 * 1000));
 
                 // Set all core Curve Optimiser offset
-                if(AllCO < 0) RyzenAdj_Backend_Linux.set_coall(RyzenAdj_Backend_Linux.ry, Convert.ToUInt32(0x100000 - (uint)(-1 * AllCO)));
+                if (AllCO < 0) RyzenAdj_Backend_Linux.set_coall(RyzenAdj_Backend_Linux.ry, Convert.ToUInt32(0x100000 - (uint)(-1 * AllCO)));
                 else RyzenAdj_Backend_Linux.set_coall(RyzenAdj_Backend_Linux.ry, 0);
 
                 // Set iGPU Curve Optimiser offset
@@ -237,58 +241,78 @@ namespace Framework_Hub.ViewModels
 
         private void SetUpTempPower()
         {
-            // Setup temp defaults for each power mode
-            if (GetSystemInfo.Product.Contains("16") && GetSystemInfo.IsGPUPresent("RX 7700S"))
+            if (powerModeSettings.GetPreset(PowerIndex) != null && File.Exists("PowerSettings.json"))
             {
-                if (PowerIndex == 0)
-                {
-                    PL1 = 85;
-                    PL2 = 85;
-                    WinPower = 0;
-                }
-                else if (PowerIndex == 1)
-                {
-                    PL1 = 95;
-                    PL2 = 95;
-                    WinPower = 1;
-                }
-                else if (PowerIndex == 2)
-                {
-                    PL1 = 100;
-                    PL2 = 120;
-                    WinPower = 2;
-                }
-
-                PL1Min = 10;
-                PL2Min = 10;
-                PL1Max = 140;
-                PL2Max = 140;
+                PowerModePresets _powerPreset = powerModeSettings.GetPreset(PowerIndex);
+                Temp = _powerPreset._temp;
+                PL1 = _powerPreset._pl1;
+                PL2 = _powerPreset._pl2;
+                PL1Max = _powerPreset._pl1Max;
+                PL2Max = _powerPreset._pl2Max;
+                PL1Min = _powerPreset._pl1Min;
+                PL2Min = _powerPreset._pl2Min;
+                AllCO = _powerPreset._allCO;
+                GfxCO = _powerPreset._gfxCO;
+                PboOffset = _powerPreset._pboOffset;
+                WinPower = _powerPreset._winPower;
             }
-            else if (GetSystemInfo.Product.Contains("13"))
+            else
             {
-                if (PowerIndex == 0)
+                // Setup temp defaults for each power mode
+                if (GetSystemInfo.Product.Contains("16") && GetSystemInfo.IsGPUPresent("RX 7700S"))
                 {
-                    PL1 = 15;
-                    PL2 = 18;
-                    WinPower = 0;
-                }
-                else if (PowerIndex == 1)
-                {
-                    PL1 = 28;
-                    PL2 = 28;
-                    WinPower = 1;
-                }
-                else if (PowerIndex == 2)
-                {
-                    PL1 = 35;
-                    PL2 = 60;
-                    WinPower = 2;
-                }
+                    if (PowerIndex == 0)
+                    {
+                        PL1 = 85;
+                        PL2 = 85;
+                        WinPower = 0;
+                    }
+                    else if (PowerIndex == 1)
+                    {
+                        PL1 = 95;
+                        PL2 = 95;
+                        WinPower = 1;
+                    }
+                    else if (PowerIndex == 2)
+                    {
+                        PL1 = 100;
+                        PL2 = 120;
+                        WinPower = 2;
+                    }
 
-                PL1Min = 5;
-                PL2Min = 5;
-                PL1Max = 60;
-                PL2Max = 60;
+                    PL1Min = 10;
+                    PL2Min = 10;
+                    PL1Max = 140;
+                    PL2Max = 140;
+                }
+                else if (GetSystemInfo.Product.Contains("13"))
+                {
+                    if (PowerIndex == 0)
+                    {
+                        PL1 = 15;
+                        PL2 = 18;
+                        WinPower = 0;
+                    }
+                    else if (PowerIndex == 1)
+                    {
+                        PL1 = 28;
+                        PL2 = 28;
+                        WinPower = 1;
+                    }
+                    else if (PowerIndex == 2)
+                    {
+                        PL1 = 35;
+                        PL2 = 60;
+                        WinPower = 2;
+                    }
+
+                    PL1Min = 5;
+                    PL2Min = 5;
+                    PL1Max = 60;
+                    PL2Max = 60;
+
+                    SavePreset();
+                }
             }
 
             Settings _settings = new Settings()
@@ -296,6 +320,25 @@ namespace Framework_Hub.ViewModels
                 lastPowerMode = PowerIndex,
             };
             appSettings.SaveSettings(_settings);
+        }
+
+        private void SavePreset()
+        {
+            PowerModePresets _powerMode = new PowerModePresets()
+            {
+                _temp = Temp,
+                _pl1Max = PL1Max,
+                _pl2Max = PL2Max,
+                _pl1Min = PL1Min,
+                _pl2Min = PL2Min,
+                _pl1 = PL1,
+                _pl2 = PL2,
+                _winPower = WinPower,
+                _allCO = AllCO,
+                _gfxCO = GfxCO,
+                _pboOffset = PboOffset,
+            };
+            powerModeSettings.SaveSettings(_powerMode, PowerIndex);
         }
     }
 }
