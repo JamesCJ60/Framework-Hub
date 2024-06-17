@@ -42,6 +42,7 @@ namespace Framework_Hub.Scripts.Windows.RyzenAdj
         [DllImport("libryzenadj.dll")] public static extern int set_apu_skin_temp_limit(IntPtr ry, [In] uint value);
         [DllImport("libryzenadj.dll")] public static extern int set_dgpu_skin_temp_limit(IntPtr ry, [In] uint value);
         [DllImport("libryzenadj.dll")] public static extern int set_apu_slow_limit(IntPtr ry, [In] uint value);
+        [DllImport("libryzenadj.dll")] public static extern int pbo_scalar(IntPtr ry, [In] uint value);
         [DllImport("libryzenadj.dll")] public static extern int set_coall(IntPtr ry, [In] uint value);
         [DllImport("libryzenadj.dll")] public static extern int set_coper(IntPtr ry, [In] uint value);
         [DllImport("libryzenadj.dll")] public static extern int set_cogfx(IntPtr ry, [In] uint value);

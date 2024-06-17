@@ -11,6 +11,9 @@ using System.Linq.Expressions;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using Framework_Hub.Services;
+using static Framework_Hub.Services.AppSettings;
+using System.IO;
 
 namespace Framework_Hub.ViewModels
 {
@@ -37,10 +40,6 @@ namespace Framework_Hub.ViewModels
         private string _winPowerText;
 
         public event System.EventHandler PowerUpdated;
-        protected virtual void OnPowerUpdated()
-        {
-            OnPowerChange();
-        }
 
         [Reactive]
         public int PowerIndex
@@ -131,8 +130,18 @@ namespace Framework_Hub.ViewModels
             set => this.RaiseAndSetIfChanged(ref _winPowerText, value);
         }
 
+        AppSettingsManager appSettings = new AppSettingsManager("Settings.json");
+
         public MainViewModel()
         {
+            if (File.Exists("Settings.json"))
+            {
+                Settings settings = appSettings.GetPreset();
+                PowerIndex = settings.lastPowerMode;
+            }
+            else PowerIndex = 2;
+            
+
             // Setup event to detect variable changes
             var propertySelectors = new Expression<Func<MainViewModel, int>>[]
             {
@@ -193,9 +202,15 @@ namespace Framework_Hub.ViewModels
                 RyzenAdj_Backend_Windows.set_fast_limit(RyzenAdj_Backend_Windows.ry, (uint)(PL2 * 1000));
 
                 // Set all core Curve Optimiser offset
-                RyzenAdj_Backend_Windows.set_coall(RyzenAdj_Backend_Windows.ry, (uint)AllCO);
+                if (AllCO < 0) RyzenAdj_Backend_Windows.set_coall(RyzenAdj_Backend_Windows.ry, Convert.ToUInt32(0x100000 - (uint)(-1 * AllCO)));
+                else RyzenAdj_Backend_Windows.set_coall(RyzenAdj_Backend_Windows.ry, 0);
+
                 // Set iGPU Curve Optimiser offset
-                RyzenAdj_Backend_Windows.set_cogfx(RyzenAdj_Backend_Windows.ry, (uint)GfxCO);
+                if (GfxCO < 0) RyzenAdj_Backend_Windows.set_cogfx(RyzenAdj_Backend_Windows.ry, Convert.ToUInt32(0x100000 - (uint)(-1 * GfxCO)));
+                else RyzenAdj_Backend_Windows.set_cogfx(RyzenAdj_Backend_Windows.ry, 0);
+
+                // PBO Scalar Offset
+                RyzenAdj_Backend_Windows.pbo_scalar(RyzenAdj_Backend_Windows.ry, (uint)(PboOffset * 100));
             }
             // RyzenAdj apply code for Linux 
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -208,9 +223,15 @@ namespace Framework_Hub.ViewModels
                 RyzenAdj_Backend_Linux.set_fast_limit(RyzenAdj_Backend_Linux.ry, (uint)(PL2 * 1000));
 
                 // Set all core Curve Optimiser offset
-                RyzenAdj_Backend_Linux.set_coall(RyzenAdj_Backend_Linux.ry, (uint)AllCO);
+                if(AllCO < 0) RyzenAdj_Backend_Linux.set_coall(RyzenAdj_Backend_Linux.ry, Convert.ToUInt32(0x100000 - (uint)(-1 * AllCO)));
+                else RyzenAdj_Backend_Linux.set_coall(RyzenAdj_Backend_Linux.ry, 0);
+
                 // Set iGPU Curve Optimiser offset
-                RyzenAdj_Backend_Linux.set_cogfx(RyzenAdj_Backend_Linux.ry, (uint)GfxCO);
+                if (GfxCO < 0) RyzenAdj_Backend_Linux.set_cogfx(RyzenAdj_Backend_Linux.ry, Convert.ToUInt32(0x100000 - (uint)(-1 * GfxCO)));
+                else RyzenAdj_Backend_Linux.set_cogfx(RyzenAdj_Backend_Linux.ry, 0);
+
+                // PBO Scalar Offset
+                RyzenAdj_Backend_Linux.pbo_scalar(RyzenAdj_Backend_Linux.ry, (uint)(PboOffset * 100));
             }
         }
 
@@ -269,6 +290,12 @@ namespace Framework_Hub.ViewModels
                 PL1Max = 60;
                 PL2Max = 60;
             }
+
+            Settings _settings = new Settings()
+            {
+                lastPowerMode = PowerIndex,
+            };
+            appSettings.SaveSettings(_settings);
         }
     }
 }
