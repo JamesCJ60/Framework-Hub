@@ -259,7 +259,7 @@ namespace Framework_Hub.ViewModels
             else
             {
                 // Setup temp defaults for each power mode
-                if (GetSystemInfo.Product.Contains("16") && GetSystemInfo.IsGPUPresent("RX 7700S"))
+                if (GetSystemInfo.Product.Contains("16"))
                 {
                     if (PowerIndex == 0)
                     {

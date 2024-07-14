@@ -40,7 +40,7 @@ namespace Framework_Hub.Services
 
             private readonly string _configDirectory;
             string _device = GetSystemInfo.Product;
-
+            bool hasDGPUModule = GetSystemInfo.HasDGPUModule();
             // set up manager instance
             public PowerModeSettingsManager(string configDirectory)
             {
@@ -52,9 +52,9 @@ namespace Framework_Hub.Services
             // Get data from preset
             public PowerModePresets GetPreset(int _powerMode)
             {
-                if (_settings.ContainsKey($"{_device}_{_powerMode}"))
+                if (_settings.ContainsKey($"{_device}_{hasDGPUModule}_{_powerMode}"))
                 {
-                    return _settings[$"{_device}_{_powerMode}"];
+                    return _settings[$"{_device}_{hasDGPUModule}_{_powerMode}"];
                 }
                 else
                 {
@@ -79,7 +79,7 @@ namespace Framework_Hub.Services
             // Save preset to json file
             public void SaveSettings(PowerModePresets _newPreset, int _powerMode)
             {
-                _settings[$"{_device}_{_powerMode}"] = _newPreset;
+                _settings[$"{_device}_{hasDGPUModule}_{_powerMode}"] = _newPreset;
                 SaveAppSettings();
             }
 

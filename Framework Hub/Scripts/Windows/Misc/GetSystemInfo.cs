@@ -17,6 +17,11 @@ namespace Framework_Hub.Scripts.Windows.Misc
         private static ManagementObjectSearcher motherboardSearcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_MotherboardDevice");
         private static ManagementObjectSearcher ComputerSsystemInfo = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_ComputerSystemProduct");
 
+        public static bool HasDGPUModule() {
+            if (IsGPUPresent("RX 7700S")) return true; 
+            else return false; 
+        } 
+
         public static bool IsGPUPresent(string gpuName)
         {
             // Create a query to search for GPU devices

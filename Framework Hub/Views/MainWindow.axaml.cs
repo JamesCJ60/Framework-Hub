@@ -26,8 +26,8 @@ public partial class MainWindow : Window
 
         lbSide.Items.Add(new SideMenu { Icon = "\ue80f", Sub = "Home", Margin = new Thickness(0,-8,0,-8) });
         //lbSide.Items.Add(new SideMenu { Icon = "\uea80", Sub = "KBD LED", Margin = new Thickness(0,-8,0,-8) });
-        lbSide.Items.Add(new SideMenu { Icon = "\ue8ab", Sub = "Auto", Margin = new Thickness(0,-8,0,-8) });
-        lbSide.Items.Add(new SideMenu { Icon = "\ue713", Sub = "Settings", Margin = new Thickness(0, -8, 0, -8) });
+        //lbSide.Items.Add(new SideMenu { Icon = "\ue8ab", Sub = "Auto", Margin = new Thickness(0,-8,0,-8) });
+        //lbSide.Items.Add(new SideMenu { Icon = "\ue713", Sub = "Settings", Margin = new Thickness(0, -8, 0, -8) });
         lbSide.SelectedIndex = 0;
 
         this.MinWidth = 1120;
